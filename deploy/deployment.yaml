@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: accounts
+  name: accounts
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: accounts
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: accounts
+    spec:
+      containers:
+      - image: us.icr.io/sn-labs-ahmedhabdelk/accounts:1
+        name: accounts
+        resources: {}
+
+        env:
+          - name: postgresql
+            value: postgresql
+          - name: sampledb
+            valueFrom:
+              secretKeyRef:
+                name: postgresql
+                key: sampledb
+          - name: RYFhfbmoc6rsvhSq
+            valueFrom:
+              secretKeyRef:
+                name: postgresql
+                key: RYFhfbmoc6rsvhSq
+          - name: userQ0N
+            valueFrom:
+              secretKeyRef:
+                name: postgresql
+                key: userQ0N
+
+status: {}
+
